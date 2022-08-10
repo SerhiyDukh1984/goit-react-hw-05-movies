@@ -1,0 +1,19 @@
+.nav {
+  padding: 20px;
+  width: 100%;
+  height: 40px;
+  background-color: aqua;
+}
+
+.link {
+  display: inline-block;
+  font-weight: bold;
+  padding: 10px;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.active {
+  composes: link;
+  color: red;
+}
