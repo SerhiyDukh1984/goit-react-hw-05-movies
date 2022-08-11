@@ -13,7 +13,7 @@
   text-decoration: none;
 }
 
-.active {
+.activeLink {
   composes: link;
   color: red;
 }

@@ -1,21 +1,27 @@
 import { React } from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import Container from './Container/Container';
 import Navigation from './Navigation/Navigation';
-import Home from './Home/Home';
-import Movies from './Movies/Movies';
+import Home from '../pages/Home.jsx';
+import Movies from '../pages/Movies';
+import MovieDetails from '../pages/MovieDetails';
+import Cast from './Cast/Cast';
 
-export const App = () => {
+export default function App() {
   return (
-    <div>
+    // <>
+    <Container>
       <Navigation />
       <Routes>
-        <Route path="/">
-          <Home />
-        </Route>
-        <Route path="/movies">
-          <Movies />
+        <Route path="/" element={<Home />} />
+
+        <Route path="/movies" element={<Movies />} />
+
+        <Route path="movies/:movieId" element={<MovieDetails />}>
+          <Route path="cast" element={<Cast />} />
         </Route>
       </Routes>
-    </div>
+    </Container>
+    // </>
   );
-};
+}
