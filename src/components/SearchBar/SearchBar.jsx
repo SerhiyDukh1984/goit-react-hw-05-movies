@@ -1,13 +1,11 @@
 // import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-// import { Route, Routes } from 'react-router-dom';
-// import s from './Searchbar.module.css';
-import { getMoviesBySearch } from 'Api/Api';
-import MovieList from '../MovieList/MovieList';
+import s from './SearhcBar.module.css';
 
-const Searchbar = () => {
+const Searchbar = ({ getSearchInput }) => {
   const [searchInput, setSearchInput] = useState('');
-  const [searchMovie, setSearchMovie] = useState([]);
+  const navigate = useNavigate();
 
   const handleChange = e => {
     const { value } = e.target;
@@ -17,19 +15,19 @@ const Searchbar = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    navigate(`?query=${searchInput}`);
 
     if (searchInput.trim() === '') {
       alert('what are you want?');
       return;
     }
-    getMoviesBySearch(searchInput).then(response => {
-      setSearchMovie(response.data.results);
-    });
+
+    getSearchInput(searchInput);
   };
 
   return (
     <>
-      <div>
+      <div className={s.nav}>
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -38,15 +36,14 @@ const Searchbar = () => {
             autoFocus
             onChange={handleChange}
             value={searchInput}
+            className={s.input}
           />
 
-          <button type="submit">
+          <button type="submit" className={s.button}>
             <span>Search</span>
           </button>
         </form>
       </div>
-
-      <MovieList films={searchMovie} />
     </>
   );
 };

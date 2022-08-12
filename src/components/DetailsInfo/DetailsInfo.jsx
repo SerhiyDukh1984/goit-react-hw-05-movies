@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Additional from 'components/Additional/Additional';
+import s from './DetailsInfo.module.css';
 
 const DetailsInfo = ({ movie }) => {
   const date = [movie.release_date];
@@ -12,26 +12,32 @@ const DetailsInfo = ({ movie }) => {
   return (
     <>
       {movie.length !== 0 && (
-        <>
+        <section>
           <Link to={'/'}>
-            <button>Go Back</button>
+            <button className={s.button}>Go Back</button>
           </Link>
-          <section>
+
+          <div className={s.info}>
             {movie.poster_path && (
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
               />
             )}
-            <div>
-              <h2>
-                {movie.title} ({release_date})
+            <div className={s.text}>
+              <h2 className={s.title}>
+                {movie.title} <span className={s.date}>({release_date})</span>
               </h2>
-              <p>User Score: {(movie.vote_average * 10).toFixed(0)} %</p>
-              <p>Overview:</p>
-              <p>{movie.overview}</p>
+              <p>
+                <span className={s.description}>User Score: </span>{' '}
+                <span className={s.score}>
+                  {(movie.vote_average * 10).toFixed(0)} %
+                </span>
+              </p>
+              <p className={s.description}>Overview:</p>
+              <p className={s.textInfo}>{movie.overview}</p>
               <div>
-                <p>Genres: </p>
+                <p className={s.description}>Genres: </p>
                 <ul>
                   {movie.genres &&
                     movie.genres.map(genre => (
@@ -40,11 +46,8 @@ const DetailsInfo = ({ movie }) => {
                 </ul>
               </div>
             </div>
-          </section>
-          <section>
-            <Additional movie={movie} />
-          </section>
-        </>
+          </div>
+        </section>
       )}
     </>
   );

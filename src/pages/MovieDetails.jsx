@@ -1,7 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Routes, Route } from 'react-router-dom';
 import { getMovieInfo } from 'Api/Api';
-import DetailsInfo from 'components/MovieDetails/MovieDetails';
+import DetailsInfo from 'components/DetailsInfo/DetailsInfo';
+import Additional from 'components/Additional/Additional';
+import Cast from 'components/Cast/Cast';
+import Reviews from 'components/Reviews/Reviews';
 
 const MoviesInfo = () => {
   const { movieId } = useParams();
@@ -18,10 +21,11 @@ const MoviesInfo = () => {
   return (
     <>
       {movie && <DetailsInfo movie={movie} />}
-      {/* <AdditionalInfoNav /> */}
-      {/* <Suspense fallback={<Loader />}>
-        <Outlet /> */}
-      {/* </Suspense> */}
+      <Additional />
+      <Routes>
+        <Route path="cast" element={<Cast />} />
+        <Route path="reviews" element={<Reviews />} />
+      </Routes>
     </>
   );
 };

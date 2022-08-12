@@ -45,7 +45,16 @@ export const getCredits = id => {
   try {
     const response = axios.get(`${BASE_URL}movie/${id}/credits?api_key=${KEY}`);
 
-    return response.data;
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getReviews = id => {
+  try {
+    const response = axios.get(`${BASE_URL}movie/${id}/reviews?api_key=${KEY}`);
+    return response;
   } catch (error) {
     console.log(error);
   }

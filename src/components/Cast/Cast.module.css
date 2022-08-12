@@ -1,0 +1,33 @@
+.list {
+  display: flex;
+  width: 1200px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+
+  list-style: none;
+}
+
+.title {
+  margin: 0;
+  font-size: 30px;
+  color: blue;
+}
+
+.character {
+  margin-top: 10px;
+  font-size: 20px;
+  color: blue;
+}
+
+.text {
+  font-size: 20px;
+  color: rgb(255, 42, 0);
+}
+
+.card {
+  width: 500px;
+  margin-bottom: 50px;
+  background-color: transparent;
+}
