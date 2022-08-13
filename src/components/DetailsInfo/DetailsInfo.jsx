@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import s from './DetailsInfo.module.css';
 
 const DetailsInfo = ({ movie }) => {
@@ -20,6 +21,7 @@ const DetailsInfo = ({ movie }) => {
           <div className={s.info}>
             {movie.poster_path && (
               <img
+                className={s.image}
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
               />
@@ -52,5 +54,7 @@ const DetailsInfo = ({ movie }) => {
     </>
   );
 };
+
+DetailsInfo.propTypes = PropTypes.array.isRequired;
 
 export default DetailsInfo;

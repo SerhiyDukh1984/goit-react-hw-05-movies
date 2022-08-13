@@ -1,10 +1,11 @@
-// import PropTypes from 'prop-types';
-import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import s from './SearhcBar.module.css';
 
 const Searchbar = ({ getSearchInput }) => {
   const [searchInput, setSearchInput] = useState('');
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleChange = e => {
@@ -15,7 +16,9 @@ const Searchbar = ({ getSearchInput }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    navigate(`?query=${searchInput}`);
+    navigate(`?query=${searchInput}`, {
+      state: location,
+    });
 
     if (searchInput.trim() === '') {
       alert('what are you want?');
@@ -31,7 +34,7 @@ const Searchbar = ({ getSearchInput }) => {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="Search film"
+            placeholder="Search film..."
             autoComplete="off"
             autoFocus
             onChange={handleChange}
@@ -48,8 +51,8 @@ const Searchbar = ({ getSearchInput }) => {
   );
 };
 
-// Searchbar.propTypes = {
-//   onSubmit: PropTypes.func.isRequired,
-// };
+Searchbar.propTypes = {
+  getSearchInput: PropTypes.func.isRequired,
+};
 
 export default Searchbar;

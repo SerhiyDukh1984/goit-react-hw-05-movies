@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { getCredits } from 'Api/Api';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { getCredits } from 'Api/Api';
 import s from './Cast.module.css';
 
 const Cast = () => {
@@ -27,10 +28,12 @@ const Cast = () => {
                       alt={el.name}
                     />
                   )}
-                  <h3 className={s.title}>{el.name}</h3>
-                  <p className={s.character}>
-                    Character: <span className={s.text}> {el.character}</span>
-                  </p>
+                  <div className={s.profileInfo}>
+                    <h3 className={s.title}>{el.name}</h3>
+                    <p className={s.character}>
+                      Character: <span className={s.text}> {el.character}</span>
+                    </p>
+                  </div>
                 </li>
               )
           )}
@@ -39,5 +42,7 @@ const Cast = () => {
     </>
   );
 };
+
+Cast.propTypes = PropTypes.func.isRequired;
 
 export default Cast;

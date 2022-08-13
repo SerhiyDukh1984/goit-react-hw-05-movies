@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import s from './MovieList.module.css';
 
 const MovieList = ({ title, films }) => {
@@ -20,5 +21,10 @@ const MovieList = ({ title, films }) => {
     </section>
   );
 };
+
+MovieList.propTypes = PropTypes.shape({
+  title: PropTypes.string,
+  films: PropTypes.array.isRequired,
+});
 
 export default MovieList;

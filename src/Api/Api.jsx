@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const BASE_URL = 'https://api.themoviedb.org/3/';
 const KEY = '1d6ccb96bef0945cd43d51d678e594b7';
@@ -60,7 +60,7 @@ export const getReviews = id => {
   }
 };
 
-// getTrendMovies.propTypes = {
-//   searchInput: PropTypes.string.isRequired,
-//   page: PropTypes.number.isRequired,
-// };
+getMoviesBySearch.propTypes = PropTypes.string.isRequired;
+getMovieInfo.propTypes = PropTypes.number.isRequired;
+getCredits.propTypes = PropTypes.number.isRequired;
+getReviews.propTypes = PropTypes.number.isRequired;

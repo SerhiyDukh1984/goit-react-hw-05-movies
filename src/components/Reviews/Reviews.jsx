@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getReviews } from 'Api/Api';
 import s from './Reviews.module.css';
 
@@ -10,14 +11,15 @@ const Reviews = () => {
   useEffect(() => {
     getReviews(movieId).then(response => {
       setReviews(response.data.results);
-      console.log(response.data.results);
     });
   }, [movieId]);
 
   return (
     <div className={s.review}>
       {reviews.length === 0 ? (
-        <p className={s.alert}>We don't have any reviews for this movie.</p>
+        <p className={s.alert}>
+          Sorry: "We don't have any reviews for this movie."
+        </p>
       ) : (
         <ul>
           {reviews.map(review => (
@@ -31,5 +33,7 @@ const Reviews = () => {
     </div>
   );
 };
+
+Reviews.propTypes = PropTypes.func.isRequired;
 
 export default Reviews;
