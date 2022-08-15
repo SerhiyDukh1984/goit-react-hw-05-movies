@@ -10,12 +10,12 @@ const Additional = () => {
       <h2 className={s.title}>Additional information</h2>
       <ul>
         <li className={s.item}>
-          <NavLink to={backLinkHref} className={s.link}>
+          <NavLink to="cast" state={backLinkHref} className={s.link}>
             Cast
           </NavLink>
         </li>
         <li className={s.item}>
-          <NavLink to={backLinkHref} className={s.link}>
+          <NavLink to="reviews" state={backLinkHref} className={s.link}>
             Reviews
           </NavLink>
         </li>
