@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import s from './SearhcBar.module.css';
 
 const Searchbar = ({ setSearch }) => {
   const [searchInput, setSearchInput] = useState('');
-  const location = useLocation();
 
   const handleChange = e => {
     const { value } = e.target;
