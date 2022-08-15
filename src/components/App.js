@@ -1,21 +1,23 @@
-import { React } from 'react';
+import { React, lazy, Suspense } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import Container from './Container/Container';
-import Navigation from './Navigation/Navigation';
-import Home from '../pages/Home.jsx';
-import Movies from '../pages/Movies';
-import MovieDetails from '../pages/MovieDetails';
+const Container = lazy(() => import('./Container/Container'));
+const Navigation = lazy(() => import('./Navigation/Navigation'));
+const Home = lazy(() => import('../pages/Home'));
+const Movies = lazy(() => import('../pages/Movies'));
+const MovieDetails = lazy(() => import('../pages/MovieDetails'));
 
 export default function App() {
   return (
     <Container>
       <Navigation />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId/*" element={<MovieDetails />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+          <Route path="/movies/:movieId/*" element={<MovieDetails />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
     </Container>
   );
 }
