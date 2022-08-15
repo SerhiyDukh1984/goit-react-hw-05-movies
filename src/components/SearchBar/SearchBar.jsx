@@ -1,12 +1,11 @@
 import PropTypes from 'prop-types';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import s from './SearhcBar.module.css';
 
-const Searchbar = ({ getSearchInput }) => {
+const Searchbar = ({ setSearch }) => {
   const [searchInput, setSearchInput] = useState('');
   const location = useLocation();
-  const navigate = useNavigate();
 
   const handleChange = e => {
     const { value } = e.target;
@@ -16,16 +15,13 @@ const Searchbar = ({ getSearchInput }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    navigate(`?query=${searchInput}`, {
-      state: location,
-    });
 
     if (searchInput.trim() === '') {
       alert('what are you want?');
       return;
     }
 
-    getSearchInput(searchInput);
+    setSearch({ query: searchInput });
   };
 
   return (
@@ -52,7 +48,7 @@ const Searchbar = ({ getSearchInput }) => {
 };
 
 Searchbar.propTypes = {
-  getSearchInput: PropTypes.func.isRequired,
+  setSearch: PropTypes.func.isRequired,
 };
 
 export default Searchbar;

@@ -2,26 +2,25 @@ import { useState, useEffect } from 'react';
 import Searchbar from 'components/SearchBar/SearchBar';
 import { getMoviesBySearch } from 'Api/Api';
 import MovieList from '../components/MovieList/MovieList';
+import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
   const [searchMovie, setSearchMovie] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
+  const [search, setSearch] = useSearchParams();
 
-  const getSearchInput = value => {
-    setSearchInput(value);
-  };
+  const query = search.get('query');
 
   useEffect(() => {
-    if (searchInput !== '') {
-      getMoviesBySearch(searchInput).then(response => {
+    if (query) {
+      getMoviesBySearch(query).then(response => {
         setSearchMovie(response.data.results);
       });
     }
-  }, [searchInput]);
+  }, [query]);
 
   return (
     <>
-      <Searchbar getSearchInput={getSearchInput} />
+      <Searchbar setSearch={setSearch} />
       {searchMovie && <MovieList films={searchMovie} />}
     </>
   );

@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import s from './DetailsInfo.module.css';
 
 const DetailsInfo = ({ movie }) => {
+  const location = useLocation();
   const date = [movie.release_date];
   let release_date = 0;
 
@@ -14,7 +15,7 @@ const DetailsInfo = ({ movie }) => {
     <>
       {movie.length !== 0 && (
         <section>
-          <Link to={'/'}>
+          <Link to={location.state ?? '/'}>
             <button className={s.button}>Go Back</button>
           </Link>
 
