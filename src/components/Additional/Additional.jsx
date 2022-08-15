@@ -3,7 +3,7 @@ import s from './Additional.module.css';
 
 const Additional = () => {
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/movies';
+  const backLinkHref = location.state ?? '/movies';
 
   return (
     <section className={s.section}>
