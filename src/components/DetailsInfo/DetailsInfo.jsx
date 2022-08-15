@@ -15,7 +15,7 @@ const DetailsInfo = ({ movie }) => {
     <>
       {movie.length !== 0 && (
         <section>
-          <Link to={location.state ?? '/'}>
+          <Link to={location.state ?? '/movies'}>
             <button className={s.button}>Go Back</button>
           </Link>
 

@@ -3,19 +3,23 @@ import s from './Additional.module.css';
 
 const Additional = () => {
   const location = useLocation();
-  const backLinkHref = location.state ?? '/movies';
+  const backLinkHref = location.state?.from ?? '/movies';
 
   return (
     <section className={s.section}>
       <h2 className={s.title}>Additional information</h2>
       <ul>
         <li className={s.item}>
-          <NavLink to="cast" state={backLinkHref} className={s.link}>
+          <NavLink to="cast" state={{ from: backLinkHref }} className={s.link}>
             Cast
           </NavLink>
         </li>
         <li className={s.item}>
-          <NavLink to="reviews" state={backLinkHref} className={s.link}>
+          <NavLink
+            to="reviews"
+            state={{ from: backLinkHref }}
+            className={s.link}
+          >
             Reviews
           </NavLink>
         </li>
